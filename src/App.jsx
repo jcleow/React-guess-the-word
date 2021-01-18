@@ -45,7 +45,7 @@ function Form() {
         console.log(guessTemplate, 'guessTemplate');
         console.log(updatedCharacterTemplate, 'updatedCharacterTemplate');
         // Finally update the guess
-        setGuess(updatedCharacterTemplate);
+        setGuess(updatedCharacterTemplate.join(''));
         setErrorMsg('');
         // Else if the secretWords array does NOT include the char in  userInputGuess...
       } else {
