@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-// Globals
-const secretWords = ['b', 'a', 'n', 'a', 'n', 'a'];
-const characterTemplate = ['_', '_', '_', '_', '_', '_'];
-const errorMsg = '(凸 ಠ 益 ಠ)凸';
 
 function Form() {
+  // Function-Scoped Variables
+  const secretWords = ['b', 'a', 'n', 'a', 'n', 'a'];
+  const characterTemplate = ['_', '_', '_', '_', '_', '_'];
+  const errorMsg = '(凸 ಠ 益 ಠ)凸';
+
   // Track the state of the (correct) guesses
-  const [guess, setGuess] = useState(characterTemplate.join());
+  const [guess, setGuess] = useState(characterTemplate.join(''));
 
   // Track the guess entered into the input(display) by the user
   const [guessDisplay, setDisplayGuess] = useState('');
@@ -31,12 +32,20 @@ function Form() {
           return accumulator;
         }, []);
 
-        // Mutate the template to reflect the correct guess in the output
-        allIndexOfChar.forEach((indexOfChar) =>
-        { characterTemplate[indexOfChar] = userInputGuess; });
+        // Get a deep copy of guess
+        const guessTemplate = [...guess];
 
+        // Mutate the template to reflect the correct guess in the output
+        const updatedCharacterTemplate = guessTemplate.map((existingChar, index) => {
+          if (allIndexOfChar.includes(index)) {
+            return userInputGuess;
+          }
+          return existingChar;
+        });
+        console.log(guessTemplate, 'guessTemplate');
+        console.log(updatedCharacterTemplate, 'updatedCharacterTemplate');
         // Finally update the guess
-        setGuess(characterTemplate);
+        setGuess(updatedCharacterTemplate);
         setErrorMsg('');
         // Else if the secretWords array does NOT include the char in  userInputGuess...
       } else {
