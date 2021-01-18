@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+// Globals
+const secretWords = ['b', 'a', 'n', 'a', 'n', 'a'];
+const characterTemplate = ['_', '_', '_', '_', '_', '_'];
+const errorMsg = '(凸 ಠ 益 ಠ)凸';
 
 function Form() {
-  // Function-scoped globals
-  const secretWords = ['b', 'a', 'n', 'a', 'n', 'a'];
-  const characterTemplate = ['_', '_', '_', '_', '_', '_'];
-  const errorMsg = '(凸 ಠ 益 ಠ)凸';
-
   // Track the state of the (correct) guesses
   const [guess, setGuess] = useState(characterTemplate.join());
 
