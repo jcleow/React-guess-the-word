@@ -35,7 +35,7 @@ function Form() {
         // Get a deep copy of guess
         const guessTemplate = [...guess];
 
-        // Mutate the template to reflect the correct guess in the output
+        // Iterate through the guess array and substitute with the correct user guess
         const updatedCharacterTemplate = guessTemplate.map((existingChar, index) => {
           if (allIndexOfChar.includes(index)) {
             return userInputGuess;
